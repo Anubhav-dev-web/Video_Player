@@ -1,0 +1,153 @@
+CSS NOTES----------->
+
+video {
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+}
+
+Meaning of above code is 
+
+So, when you apply this CSS to a <video> element, it will have rounded corners, take up the full width of its container, and automatically adjust its height to maintain its aspect ratio. This is a common approach for making videos responsive and visually appealing within a webpage.
+
+
+-----
+
+.show-controls:hover .controls-container {
+  opacity: 1;
+  transition: all 0.2s ease-out;
+}
+
+Meaning of above code is 
+
+So, when an element with the class .show-controls is hovered over, the opacity of the nested element with the class .controls-container will change to 1 with a smooth transition over 0.2 seconds. This kind of effect is often used to create a smooth transition when revealing or hiding additional controls on user interaction.
+
+
+
+---------------- 
+
+.controls-left,
+.controls-right {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  top: 40px;
+}
+
+Meaning of above code is 
+
+The code is setting up a flexible layout (display: flex;) for elements with classes .controls-left or .controls-right, distributing available space equally among them. It also hides any overflowing content, positions the elements relatively, and moves them 40 pixels down from their normal position. The specific functionality and appearance would depend on the context in which these styles are applied.
+
+flex: 1;: This property sets the flex property of the elements to 1. This is often used in a flex container to distribute available space equally among the child elements. In this case, it's likely part of a flex layout.
+
+top: 40px;: This property positions the elements 40 pixels down from their normal position. This is a relative positioning style applied to the elements.
+
+
+--------------------------   
+
+.video-fullscreen {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+Meaning of above code is 
+
+.video-fullscreen: This selector targets elements with the class video-fullscreen.
+
+position: relative;: This property sets the positioning context of the element to relative. This is the initial position for the subsequent positioning properties.
+
+top: 50%;: This property moves the element down by 50% of its containing element's height. This places the top of the element at the vertical center of its container.
+
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ (Attention)
+transform: translateY(-50%);: This property, in combination with top: 50%;, fine-tunes the vertical positioning. It uses the translateY transform function to move the element upward by 50% of its own height. This effectively centers the element vertically within its container.
+
+The purpose of this code is to vertically center an element with the class video-fullscreen within its containing element. It's commonly used for centering elements, such as videos, in a responsive and visually pleasing way. The position: relative;, top: 50%;, and transform: translateY(-50%); combination is a common technique for achieving vertical centering.
+
+-------------------------- 
+
+@media screen and (max-width: 819px) {
+  .player {
+    min-width: 0;
+    max-width: 95vw;
+  }
+
+  ...........//further styles
+}
+
+Meaning of this element
+
+@media screen and (max-width: 819px) { ... }: This is a media query that specifies conditions under which the styles inside the curly braces { ... } will be applied. In this case, the styles will be applied when the screen width is at most 819 pixels.
+
+.player { min-width: 0; max-width: 95vw; }: This targets elements with the class .player. It sets the minimum width to 0 and the maximum width to 95% of the viewport width (95vw). This likely makes the .player element responsive and take up at most 95% of the viewport width.
+
+JAVASCRIPT ------------------------------------
+
+/*This full screen code is referred from W3S */
+
+/* View in fullscreen */
+
+function openFullscreen(elem) {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    /* IE11 */
+    elem.msRequestFullscreen();
+  }
+  video.classList.add("video-fullscreen");
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    /* IE11 */
+    document.msExitFullscreen();
+  }
+  video.classList.remove("video-fullscreen");
+}
+
+let fullscreen = false;
+
+//toggle full screen
+function toggleFullscreen() {
+  if (!fullscreen) {
+    openFullscreen(player);
+  } else {
+    closeFullscreen();
+  }
+  fullscreen = !fullscreen;
+}
+
+Explanation of above code is
+
+Certainly! This code is JavaScript that handles toggling between fullscreen and normal mode for a video element. Let's break it down step by step:
+
+1. **`openFullscreen(elem)` Function:**
+   - This function takes an element (`elem`) as a parameter, which is expected to be the video player.
+   - It attempts to request fullscreen mode on the provided element using different browser-specific methods (`requestFullscreen`, `webkitRequestFullscreen`, and `msRequestFullscreen`).
+   - If any of these methods are supported by the browser, it puts the video player (`elem`) into fullscreen mode.
+   - It also adds a CSS class called "video-fullscreen" to the video element (`video.classList.add("video-fullscreen");`). This class is likely used to apply specific styles when the video is in fullscreen mode.
+
+2. **`closeFullscreen()` Function:**
+   - This function is responsible for exiting fullscreen mode.
+   - It uses similar browser-specific methods (`exitFullscreen`, `webkitExitFullscreen`, and `msExitFullscreen`) to exit fullscreen.
+   - Additionally, it removes the "video-fullscreen" class from the video element (`video.classList.remove("video-fullscreen");`).
+
+3. **`let fullscreen = false;`**
+   - This variable is used to keep track of whether the video is currently in fullscreen mode or not.
+
+4. **`toggleFullscreen()` Function:**
+   - This function is called when there's a desire to toggle between fullscreen and normal mode.
+   - If the `fullscreen` variable is `false` (indicating that the video is not in fullscreen mode), it calls `openFullscreen(player)` to put the video into fullscreen mode. Otherwise, it calls `closeFullscreen()` to exit fullscreen mode.
+   - It then toggles the `fullscreen` variable to keep track of the current state.
+
+Overall, these functions work together to provide a simple mechanism for toggling fullscreen mode for a video element. It checks browser compatibility and uses appropriate methods to enter and exit fullscreen mode. The `toggleFullscreen` function is likely associated with a button or user action to enable fullscreen mode.
