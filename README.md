@@ -10,6 +10,7 @@
 * Play/Pause: Control the playback of video content with the play/pause button.
 * Volume Control: Adjust the volume level according to your preference.
 * Fullscreen Mode: Expand the video player to fullscreen mode for a better viewing experience.
+* Speed controls to change the speed of the player
 
 ## Preview
 ![video](https://github.com/Anubhav-dev-web/Video_Player/assets/80172002/029609ac-52bd-4cf5-a45c-8cfb64c02518)
